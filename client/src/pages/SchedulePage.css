@@ -1,0 +1,61 @@
+:root {
+    --primary-color: rgb(215, 224, 55);
+    --secondary-color: rgb(70, 70, 72);
+    --tertiary-color: rgb(108, 112, 68);
+    --quaternary-color: rgb(0, 0, 0);
+    --quinary-color: rgb(255, 255, 255);
+}
+
+.schedule {
+    padding: 1.5rem;
+    font-family: 'Roboto', sans-serif; /* Replace 'Roboto' with the name of your font */
+}
+
+.form-container {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    max-width: 80vh;
+    margin: 10px auto;
+    margin-top: 15vh;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    border: 1px solid black !important;
+    text-align: center;
+}
+
+.form-label {
+    font-size: 2em;
+}
+
+.form-button {
+    background-color: var(--quaternary-color) !important; 
+    color: var(--quinary-color) !important;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid black !important;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+/* Media query for screens smaller than 600px */
+@media (max-width: 600px) {
+    .form-container {
+        max-width: 100%;
+    }
+
+    .form-button {
+        width: 100%;
+    }
+}
