@@ -20,7 +20,10 @@ async function getUpdatedChecksheet(id) {
     return updatedChecksheet;
 }
 
-mongoose.connect(mongoUrl)
+mongoose.connect(mongoUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 

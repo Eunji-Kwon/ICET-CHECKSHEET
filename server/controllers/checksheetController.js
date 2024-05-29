@@ -1,5 +1,6 @@
 
 const fetch = require('node-fetch');
+const cron = require('node-cron');
 
 
 const Checksheet = require('../models/Checksheet');
@@ -7,6 +8,21 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 const local = 'http://localhost:5000';
 const URL = process.env.REACT_APP_API_URL || local;
+
+// //Delete the Data (3days)
+// async function deleteOldChecksheets() {
+//     const threeDaysAgo = new Date();
+//     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+
+//     try {
+//         const result = await Checksheet.deleteMany({ createdAt: { $lt: threeDaysAgo } });
+//         console.log(`${result.deletedCount} checksheets deleted.`);
+//     } catch (err) {
+//         console.error('Error deleting old checksheets:', err);
+//     }
+// }
+
+// cron.schedule('0 0 * * *', deleteOldChecksheets); // Excuting it Everyday at 00:00AM 
 
 exports.getAll = async (req, res) => {
     try {
@@ -108,3 +124,25 @@ exports.update = async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 };
+
+
+// // Reset every at Sunday 00:00AM
+// cron.schedule('30 11 * * 4', async () => {
+//     try {
+//         const today = new Date();
+//         today.setHours(0, 0, 0, 0);
+
+//         // 이전 주의 Checksheets를 모두 History로 이동
+//         const lastWeek = new Date(today);
+//         lastWeek.setDate(today.getDate() - 7);
+
+//         await Checksheet.updateMany(
+//             { createdAt: { $lt: today } },
+//             { $set: { isChecked: true } }
+//         );
+
+//         console.log('Checksheets have been reset for the new week.');
+//     } catch (err) {
+//         console.error('Error resetting checksheets: ', err.message);
+//     }
+// });

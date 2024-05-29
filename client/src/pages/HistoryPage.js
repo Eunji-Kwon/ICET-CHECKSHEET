@@ -15,11 +15,7 @@ const HistoryPage = () => {
     const [data, setData] = useState([]);
     const [today, setToday] = useState('');
 
-    // const local = 'http://localhost:5000';
-    // const URL = process.env.REACT_APP_API_URL || local;
-    //const URL = local;
-    //const [socket, setSocket] = useState(io(URL));
-//    const socket = useMemo(() => io('/api'), []); 
+
 const socket = useMemo( () => io('http://35.183.100.104'),[]);
 
 const shortenDay = (day) => {
@@ -56,9 +52,15 @@ const shortenDay = (day) => {
             },
         });
         const data = await response.json();
+        
+         // Calculate the date n days ago
+         const n = 3;
+         const nDaysAgo = moment().subtract(n, 'days');
 
-        // Filter the data to only include checksheets where isChecked is true
-        const filteredData = data.filter(sheet => sheet.isChecked);
+    // Filter the data to only include checksheets where isChecked is true and actualTime is within the last 3 days
+        const filteredData = data.filter(sheet =>
+        sheet.isChecked &&
+         moment(sheet.actualTime).isAfter(nDaysAgo));
 
         // Map the filtered data to a new format
         const mappedData = filteredData.map(sheet => ({
@@ -67,7 +69,8 @@ const shortenDay = (day) => {
             lab: sheet.lab,
             startTime: moment(sheet.startTime, 'HH:mm:ss').format('HH:mm'),
             checkedBy: sheet.checkedBy,
-            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('MMM D   HH:mm') : ""
+            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('YYYY/MM/DD HH:mm') : ""
+           // formattedTime: sheet.actualTime ? moment(sheet.actualTime).format('MMM D, HH:mm') : ""
         }));
 
         setData(mappedData);
@@ -117,6 +120,11 @@ const shortenDay = (day) => {
                 filtervariant: 'select',
             },
         ] : [
+              {
+                accessorKey: 'actualTime',
+                header: 'Checked Time',
+                size: 20,
+            },
             {
                 accessorKey: 'lab',
                 header: 'Lab',
@@ -126,7 +134,7 @@ const shortenDay = (day) => {
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
-                size: 20,
+                size: 10,
             },
             {
                 accessorKey: 'day',
@@ -137,13 +145,9 @@ const shortenDay = (day) => {
             {
                 accessorKey: 'checkedBy',
                 header: 'Checked By',
-                size:20,
+                size:15,
             },
-            {
-                accessorKey: 'actualTime',
-                header: 'Checked Time',
-                size: 30,
-            },
+          
 
         ],
         [isSmallScreen]
@@ -214,13 +218,25 @@ const shortenDay = (day) => {
 
     });
     
-       useEffect(() => {
+    //   useEffect(() => {
 
-        table.setSorting([{ id: 'actualTime', desc: true }]);
-    }, [table]);
+    //     table.setSorting([{ id: 'actualTime', desc: true }]);
+    // }, [table]);
 
     return (
         <>
+            
+            <Typography 
+                align="left"
+                 sx={{
+                        paddingTop: '1px',
+                        paddingRight: '4px', 
+                        fontSize: '0.7rem',
+                        fontStyle: 'italic'
+                    }}>
+                This history record is kept for 3 days and then removed.
+                </Typography>
+            
             <Box
                 justifyContent={'center'}
                 alignItems={'center'}

@@ -19,16 +19,9 @@ const ChecksheetPage = () => {
     const [data, setData] = useState([]);
     const [today, setToday] = useState('');
 
-    // const local = 'http://localhost:5000';
-    // const URL = process.env.REACT_APP_API_URL || local;
-    //    const [socket, setSocket] = useState(io(URL));
-//    const socket = useMemo(() => io('/api'), []);
-//const socket = useMemo(() => io('wss://35.183.100.104/api'), []);
+
 	const socket = useMemo( () => io('http://35.183.100.104'),[]);
-//const socket = useMemo(() => io('wss://35.183.100.104', {
-//    path: '/api/socket.io',
-//   transports: ['websocket', 'polling'],
-//}), []);
+
 
 
 

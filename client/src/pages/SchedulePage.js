@@ -5,11 +5,7 @@ import { io } from 'socket.io-client';
 
 const Schedule = () => {
     const [jsonData, setJsonData] = useState(null);
-    // const local = 'http://localhost:5000';
-    // const URL = process.env.REACT_APP_API_URL || local;
-    //const URL = local;
-    //const [socket, setSocket] = useState(io(URL));
-//    const socket = useMemo(() => io('/api'), []);
+
 const socket = useMemo( () => io('http://35.183.100.104'),[]);
 
 
