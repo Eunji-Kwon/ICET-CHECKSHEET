@@ -5,7 +5,11 @@ const Footer = () => {
         <Navbar fixed="bottom" bg="dark" variant="dark">
             <Container>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <Navbar.Text style={{fontSize: '0.6em'}}>©2024 SETAS - ICET Department. All rights reserved.</Navbar.Text>
+=======
+                <Navbar.Text>©2024 SETAS - ICET Department. All rights reserved.</Navbar.Text>
+>>>>>>> 9cb1631 (version 1.0)
 =======
                 <Navbar.Text>©2024 SETAS - ICET Department. All rights reserved.</Navbar.Text>
 >>>>>>> 9cb1631 (version 1.0)

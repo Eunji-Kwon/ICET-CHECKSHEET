@@ -9,7 +9,10 @@ import {
     IconButton,
     Box,
 <<<<<<< HEAD
+<<<<<<< HEAD
     Typography,
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)
 } from '@mui/material';
@@ -21,6 +24,7 @@ import io from 'socket.io-client';
 const ChecksheetPage = () => {
     const [data, setData] = useState([]);
 <<<<<<< HEAD
+<<<<<<< HEAD
     const [today, setToday] = useState('');
 
 
@@ -29,6 +33,8 @@ const ChecksheetPage = () => {
 
 
 =======
+=======
+>>>>>>> 9cb1631 (version 1.0)
     // const local = 'http://localhost:5000';
     // const URL = process.env.REACT_APP_API_URL || local;
     //    const [socket, setSocket] = useState(io(URL));
@@ -39,6 +45,9 @@ const ChecksheetPage = () => {
 //    path: '/api/socket.io',
 //   transports: ['websocket', 'polling'],
 //}), []);
+<<<<<<< HEAD
+>>>>>>> 9cb1631 (version 1.0)
+=======
 >>>>>>> 9cb1631 (version 1.0)
 
 
@@ -47,7 +56,10 @@ const ChecksheetPage = () => {
         //     setSocket(io(URL));
         // }
 <<<<<<< HEAD
+<<<<<<< HEAD
          setToday(moment().format('MMMM Do, YYYY'));
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)
 
@@ -68,7 +80,11 @@ const ChecksheetPage = () => {
                 day: sheet.day,
                 lab: sheet.lab,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 startTime: moment(sheet.startTime, 'HH:mm:ss').format('HH:mm'),
+=======
+                startTime: moment(sheet.startTime, 'HH:mm:ss').format('hh:mm A'),
+>>>>>>> 9cb1631 (version 1.0)
 =======
                 startTime: moment(sheet.startTime, 'HH:mm:ss').format('hh:mm A'),
 >>>>>>> 9cb1631 (version 1.0)
@@ -113,7 +129,11 @@ const ChecksheetPage = () => {
                 day: updatedChecksheet.day,
                 lab: updatedChecksheet.lab,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 startTime: moment(updatedChecksheet.startTime).format('HH:mm'),
+=======
+                startTime: moment(updatedChecksheet.startTime).format('hh:mm A'),
+>>>>>>> 9cb1631 (version 1.0)
 =======
                 startTime: moment(updatedChecksheet.startTime).format('hh:mm A'),
 >>>>>>> 9cb1631 (version 1.0)
@@ -221,7 +241,11 @@ const handleCreateChecksheet = async () => {
                 accessorKey: 'lab',
                 header: 'Lab',
 <<<<<<< HEAD
+<<<<<<< HEAD
                 size: 20,
+=======
+                size: 30,
+>>>>>>> 9cb1631 (version 1.0)
 =======
                 size: 30,
 >>>>>>> 9cb1631 (version 1.0)
@@ -233,12 +257,15 @@ const handleCreateChecksheet = async () => {
                 size: 50,
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
             {
                 accessorKey: 'day',
                 header: 'Day',
                 size: 20,
                 filtervariant: 'select',
             },
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)
         ] : [
@@ -260,6 +287,7 @@ const handleCreateChecksheet = async () => {
                 filtervariant: 'select',
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
             // {
             //     accessorKey: 'checkedBy',
             //     header: 'Checked By',
@@ -271,6 +299,8 @@ const handleCreateChecksheet = async () => {
             //     size: 30,
             // },
 =======
+=======
+>>>>>>> 9cb1631 (version 1.0)
             {
                 accessorKey: 'checkedBy',
                 header: 'Checked By',
@@ -281,6 +311,9 @@ const handleCreateChecksheet = async () => {
                 header: 'Actual Time',
                 size: 30,
             },
+<<<<<<< HEAD
+>>>>>>> 9cb1631 (version 1.0)
+=======
 >>>>>>> 9cb1631 (version 1.0)
 
         ],
@@ -301,9 +334,15 @@ const handleCreateChecksheet = async () => {
                 'lab',
                 'startTime',
 <<<<<<< HEAD
+<<<<<<< HEAD
                // 'checkedBy',
             ],
             showColumnFilters: false, // Ture -> Filter will be active
+=======
+                'checkedBy',
+            ],
+            showColumnFilters: false,
+>>>>>>> 9cb1631 (version 1.0)
 =======
                 'checkedBy',
             ],
@@ -319,10 +358,14 @@ const handleCreateChecksheet = async () => {
             showTableSelector: false,
             showViewChanger: false,
 <<<<<<< HEAD
+<<<<<<< HEAD
             sorting: [
                 { id: 'startTime', desc: false }, 
                 { id: 'lab', desc: false } 
             ],
+=======
+
+>>>>>>> 9cb1631 (version 1.0)
 =======
 
 >>>>>>> 9cb1631 (version 1.0)
@@ -437,6 +480,7 @@ const handleCreateChecksheet = async () => {
                 padding={'0px'}
             >
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
                 <Typography 
                     variant="h6" 
@@ -451,6 +495,8 @@ const handleCreateChecksheet = async () => {
                 {today}
                 </Typography>
                 
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)
                 <MaterialReactTable table={table} />

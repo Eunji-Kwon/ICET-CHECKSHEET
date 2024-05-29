@@ -1,7 +1,10 @@
 
 const fetch = require('node-fetch');
 <<<<<<< HEAD
+<<<<<<< HEAD
 const cron = require('node-cron');
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)
 
@@ -12,6 +15,7 @@ const ObjectId = mongoose.Types.ObjectId;
 const local = 'http://localhost:5000';
 const URL = process.env.REACT_APP_API_URL || local;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // //Delete the Data (3days)
 // async function deleteOldChecksheets() {
@@ -28,6 +32,8 @@ const URL = process.env.REACT_APP_API_URL || local;
 
 // cron.schedule('0 0 * * *', deleteOldChecksheets); // Excuting it Everyday at 00:00AM 
 
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)
 exports.getAll = async (req, res) => {
@@ -131,6 +137,7 @@ exports.update = async (req, res) => {
     }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 // // Reset every at Sunday 00:00AM
@@ -153,5 +160,7 @@ exports.update = async (req, res) => {
 //         console.error('Error resetting checksheets: ', err.message);
 //     }
 // });
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)

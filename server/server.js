@@ -21,10 +21,14 @@ async function getUpdatedChecksheet(id) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 mongoose.connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
+=======
+mongoose.connect(mongoUrl)
+>>>>>>> 9cb1631 (version 1.0)
 =======
 mongoose.connect(mongoUrl)
 >>>>>>> 9cb1631 (version 1.0)

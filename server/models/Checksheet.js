@@ -27,9 +27,12 @@ const ChecksheetSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // // Add a TTL index to delete documents after 1 day (86400 seconds)
 // ChecksheetSchema.index({ createdAt: 1 }, { expireAfterSeconds: 86400 });
 
+=======
+>>>>>>> 9cb1631 (version 1.0)
 =======
 >>>>>>> 9cb1631 (version 1.0)
 module.exports = mongoose.model('Checksheet', ChecksheetSchema);
