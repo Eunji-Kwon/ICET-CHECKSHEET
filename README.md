@@ -1,8 +1,9 @@
 # ICET-CHECKSHEET
 
+## Nginx file
+### /etc/nginx/conf.d/decault.conf 
 
-# /etc/nginx/conf.d/decault.conf 
-
+```nginx
 upstream backend_api {
         server 127.0.0.1:5000;
 }
