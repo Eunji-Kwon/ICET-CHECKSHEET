@@ -49,9 +49,9 @@ const ChecksheetPage = () => {
                 id: sheet._id,
                 day: sheet.day,
                 lab: sheet.lab,
-                startTime: moment(sheet.startTime, 'HH:mm:ss').format('hh:mm A'),
-                checkedBy: sheet.checkedBy,
-                actualTime: sheet.actualTime ? moment(sheet.actualTime).format('hh:mm A') : ""
+                startTime: moment(sheet.startTime, 'HH:mm:ss').format('HH:mm'),
+                //checkedBy: sheet.checkedBy,
+                //actualTime: sheet.actualTime ? moment(sheet.actualTime).format('hh:mm A') : ""
             }));
 
             setData(mappedData);
@@ -90,9 +90,9 @@ const ChecksheetPage = () => {
                 id: updatedChecksheet._id,
                 day: updatedChecksheet.day,
                 lab: updatedChecksheet.lab,
-                startTime: moment(updatedChecksheet.startTime).format('hh:mm A'),
-                checkedBy: updatedChecksheet.checkedBy,
-                actualTime: updatedChecksheet.actualTime ? moment(updatedChecksheet.actualTime).format('hh:mm A') : "",
+                startTime: moment(updatedChecksheet.startTime).format('HH:mm'),
+                //checkedBy: updatedChecksheet.checkedBy,
+                //actualTime: updatedChecksheet.actualTime ? moment(updatedChecksheet.actualTime).format('hh:mm A') : "",
                 isChecked: updatedChecksheet.isChecked,
             };
 
@@ -194,13 +194,19 @@ const handleCreateChecksheet = async () => {
             {
                 accessorKey: 'lab',
                 header: 'Lab',
-                size: 30,
+                size: 20,
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
                 size: 50,
+            },
+            {
+                accessorKey: 'day',
+                header: 'Day',
+                size: 20,
+                filtervariant: 'select',
             },
         ] : [
             {
@@ -220,16 +226,16 @@ const handleCreateChecksheet = async () => {
                 size: 20,
                 filtervariant: 'select',
             },
-            {
-                accessorKey: 'checkedBy',
-                header: 'Checked By',
-                size: 30,
-            },
-            {
-                accessorKey: 'actualTime',
-                header: 'Actual Time',
-                size: 30,
-            },
+            // {
+            //     accessorKey: 'checkedBy',
+            //     header: 'Checked By',
+            //     size: 30,
+            // },
+            // {
+            //     accessorKey: 'actualTime',
+            //     header: 'Actual Time',
+            //     size: 30,
+            // },
 
         ],
         [isSmallScreen]
@@ -250,7 +256,7 @@ const handleCreateChecksheet = async () => {
                 'startTime',
                 'checkedBy',
             ],
-            showColumnFilters: false,
+            showColumnFilters: false, // Ture -> Filter will be active
             showColumnVisibilityManager: false,
             showDensitySelector: false,
             showGroupingControls: false,

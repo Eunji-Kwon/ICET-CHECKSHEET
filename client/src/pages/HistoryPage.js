@@ -37,9 +37,9 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             id: sheet._id,
             day: sheet.day,
             lab: sheet.lab,
-            startTime: moment(sheet.startTime, 'HH:mm:ss').format('hh:mm A'),
+            startTime: moment(sheet.startTime, 'HH:mm:ss').format('HH:mm'),
             checkedBy: sheet.checkedBy,
-            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('hh:mm A') : ""
+            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('MM/DD/YYYY HH:mm') : ""
         }));
 
         setData(mappedData);
@@ -64,25 +64,35 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             {
                 accessorKey: 'lab',
                 header: 'Lab',
-                size: 30,
+                size: 10,
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
+                size:20,
+            },
+            {
+                accessorKey: 'checkedBy',
+                header: 'Checked By',
+                size: 20,
+            },
+            {
+                accessorKey: 'actualTime',
+                header: 'Checked Time',
                 size: 50,
             },
         ] : [
             {
                 accessorKey: 'lab',
                 header: 'Lab',
-                size: 30,
+                size: 10,
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
-                size: 50,
+                size: 20,
             },
             {
                 accessorKey: 'day',
@@ -93,11 +103,11 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             {
                 accessorKey: 'checkedBy',
                 header: 'Checked By',
-                size: 30,
+                size:20,
             },
             {
                 accessorKey: 'actualTime',
-                header: 'Actual Time',
+                header: 'Checked Time',
                 size: 30,
             },
 
@@ -113,6 +123,7 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
         enablePagination: false,
         initialState: {
             columnOrder: [
+                'actualTime',
                 'day',
                 'lab',
                 'startTime',
