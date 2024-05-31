@@ -4,12 +4,17 @@ import {
     MaterialReactTable,
     useMaterialReactTable,
 } from 'material-react-table';
-import { Box } from '@mui/material';
+import { Box,
+        Typography,
+    
+} from '@mui/material';
 import moment from 'moment';
 import io from 'socket.io-client';
 
 const HistoryPage = () => {
     const [data, setData] = useState([]);
+    const [today, setToday] = useState('');
+
     // const local = 'http://localhost:5000';
     // const URL = process.env.REACT_APP_API_URL || local;
     //const URL = local;
@@ -17,7 +22,30 @@ const HistoryPage = () => {
 //    const socket = useMemo(() => io('/api'), []); 
 const socket = useMemo( () => io('http://35.183.100.104'),[]);
 
+const shortenDay = (day) => {
+    switch(day) {
+        case 'Monday':
+            return 'Mon';
+        case 'Tuesday':
+            return 'Tues';
+        case 'Wednesday':
+            return 'Wed';
+        case 'Thursday':
+            return 'Thurs';
+        case 'Friday':
+            return 'Fri';
+        case 'Saturday':
+            return 'Sat';
+        case 'Sunday':
+            return 'Sun';
+        default:
+            return day;
+    }
+};
+
     useEffect(() => {
+        
+ setToday(moment().format('MMMM Do, YYYY'));
     // if (!socket) {
     //     setSocket(io(URL));
     // }
@@ -35,11 +63,11 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
         // Map the filtered data to a new format
         const mappedData = filteredData.map(sheet => ({
             id: sheet._id,
-            day: sheet.day,
+            day: shortenDay(sheet.day), 
             lab: sheet.lab,
-            startTime: moment(sheet.startTime, 'HH:mm:ss').format('hh:mm A'),
+            startTime: moment(sheet.startTime, 'HH:mm:ss').format('HH:mm'),
             checkedBy: sheet.checkedBy,
-            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('hh:mm A') : ""
+            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('MMM D   HH:mm') : ""
         }));
 
         setData(mappedData);
@@ -64,40 +92,56 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             {
                 accessorKey: 'lab',
                 header: 'Lab',
-                size: 30,
+                size: 0.2,
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
-                size: 50,
+                size:0.3,
+            },
+            {
+                accessorKey: 'checkedBy',
+                header: 'Checked By',
+                size: 1,
+            },
+            {
+                accessorKey: 'actualTime',
+                header: 'Checked Time',
+                size: 4,
+            },
+             {
+                accessorKey: 'day',
+                header: 'Day',
+                size: 0.2,
+                filtervariant: 'select',
             },
         ] : [
             {
                 accessorKey: 'lab',
                 header: 'Lab',
-                size: 30,
+                size: 10,
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
-                size: 50,
+                size: 20,
             },
             {
                 accessorKey: 'day',
                 header: 'Day',
-                size: 20,
+                size: 10,
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'checkedBy',
                 header: 'Checked By',
-                size: 30,
+                size:20,
             },
             {
                 accessorKey: 'actualTime',
-                header: 'Actual Time',
+                header: 'Checked Time',
                 size: 30,
             },
 
@@ -113,12 +157,13 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
         enablePagination: false,
         initialState: {
             columnOrder: [
+                'actualTime',
                 'day',
                 'lab',
                 'startTime',
                 'checkedBy',
             ],
-            showColumnFilters: true,
+            showColumnFilters: false, //
             showColumnVisibilityManager: false,
             showDensitySelector: false,
             showGroupingControls: false,
@@ -128,6 +173,9 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             showSummary: false,
             showTableSelector: false,
             showViewChanger: false,
+            sorting: [
+                { id: 'actualTime', desc: true } 
+            ],
         },
         muiTopToolbarProps: {
             sx: {
@@ -165,6 +213,11 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
         },
 
     });
+    
+       useEffect(() => {
+
+        table.setSorting([{ id: 'actualTime', desc: true }]);
+    }, [table]);
 
     return (
         <>
@@ -178,8 +231,24 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
                 maxWidth={'96%'}
                 overflow={'auto'}
                 padding={'0px'}
+            
             >
+                    
+                <Typography 
+                    variant="h6" 
+                    align="right"  
+                    gutterBottom 
+                    sx={{
+                        paddingRight: '2px', 
+                        fontSize: '0.8rem',
+                        fontStyle: 'italic'
+                    }}
+                >
+                {today}
+                </Typography>
+               
                 <MaterialReactTable table={table} />
+               
             </Box>
         </>
     );
