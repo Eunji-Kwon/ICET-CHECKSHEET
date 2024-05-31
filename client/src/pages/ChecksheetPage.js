@@ -8,6 +8,7 @@ import {
 import {
     IconButton,
     Box,
+    Typography,
 } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import moment from 'moment';
@@ -16,6 +17,8 @@ import io from 'socket.io-client';
 
 const ChecksheetPage = () => {
     const [data, setData] = useState([]);
+    const [today, setToday] = useState('');
+
     // const local = 'http://localhost:5000';
     // const URL = process.env.REACT_APP_API_URL || local;
     //    const [socket, setSocket] = useState(io(URL));
@@ -28,10 +31,13 @@ const ChecksheetPage = () => {
 //}), []);
 
 
+
+
     useEffect(() => {
         // if (!socket) {
         //     setSocket(io(URL));
         // }
+         setToday(moment().format('MMMM Do, YYYY'));
 
         const fetchData = async () => {
             const response = await fetch('/api/checksheet', {
@@ -50,8 +56,8 @@ const ChecksheetPage = () => {
                 day: sheet.day,
                 lab: sheet.lab,
                 startTime: moment(sheet.startTime, 'HH:mm:ss').format('HH:mm'),
-                //checkedBy: sheet.checkedBy,
-                //actualTime: sheet.actualTime ? moment(sheet.actualTime).format('hh:mm A') : ""
+                checkedBy: sheet.checkedBy,
+                actualTime: sheet.actualTime ? moment(sheet.actualTime).format('hh:mm A') : ""
             }));
 
             setData(mappedData);
@@ -91,8 +97,8 @@ const ChecksheetPage = () => {
                 day: updatedChecksheet.day,
                 lab: updatedChecksheet.lab,
                 startTime: moment(updatedChecksheet.startTime).format('HH:mm'),
-                //checkedBy: updatedChecksheet.checkedBy,
-                //actualTime: updatedChecksheet.actualTime ? moment(updatedChecksheet.actualTime).format('hh:mm A') : "",
+                checkedBy: updatedChecksheet.checkedBy,
+                actualTime: updatedChecksheet.actualTime ? moment(updatedChecksheet.actualTime).format('hh:mm A') : "",
                 isChecked: updatedChecksheet.isChecked,
             };
 
@@ -254,7 +260,7 @@ const handleCreateChecksheet = async () => {
                 'day',
                 'lab',
                 'startTime',
-                'checkedBy',
+               // 'checkedBy',
             ],
             showColumnFilters: false, // Ture -> Filter will be active
             showColumnVisibilityManager: false,
@@ -266,7 +272,10 @@ const handleCreateChecksheet = async () => {
             showSummary: false,
             showTableSelector: false,
             showViewChanger: false,
-
+            sorting: [
+                { id: 'startTime', desc: false }, 
+                { id: 'lab', desc: false } 
+            ],
         },
         enableRowActions: true,
         positionActionsColumn: 'last',
@@ -377,6 +386,20 @@ const handleCreateChecksheet = async () => {
                 overflow={'auto'}
                 padding={'0px'}
             >
+                
+                <Typography 
+                    variant="h6" 
+                    align="right"  
+                    gutterBottom 
+                    sx={{
+                        paddingRight: '2px', 
+                        fontSize: '0.8rem',
+                        fontStyle: 'italic'
+                    }}
+                >
+                {today}
+                </Typography>
+                
                 <MaterialReactTable table={table} />
             </Box>
         </>
