@@ -6,18 +6,16 @@
 ```nginx
 upstream backend_api {
         server 127.0.0.1:5000;
-}
+        }
 
 server {
     listen       80;
     server_name 35.183.100.104;
     
     root /home/ubuntu/icet-checksheet-deploy/client/build;
-    
-     index  index.html index.htm index.nginx-debian.html;
+    index  index.html index.htm index.nginx-debian.html;
      
     client_body_buffer_size 50k;
-
 
         #Static files and SPA support
     location / {   
@@ -50,9 +48,8 @@ server {
         proxy_cache_bypass $http_upgrade;
    }
 
-
-#Favicon
- location = /favicon.ico {
+        #Favicon
+    location = /favicon.ico {
         log_not_found off;
         access_log off;
         try_files $uri /404.html;
