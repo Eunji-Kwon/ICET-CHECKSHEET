@@ -4,28 +4,22 @@ import {
     MaterialReactTable,
     useMaterialReactTable,
 } from 'material-react-table';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { Box,
         Typography,
     
 } from '@mui/material';
-=======
-import { Box } from '@mui/material';
->>>>>>> 9cb1631 (version 1.0)
-=======
-import { Box } from '@mui/material';
->>>>>>> 9cb1631 (version 1.0)
 import moment from 'moment';
 import io from 'socket.io-client';
 
 const HistoryPage = () => {
     const [data, setData] = useState([]);
-<<<<<<< HEAD
-<<<<<<< HEAD
     const [today, setToday] = useState('');
 
-
+    // const local = 'http://localhost:5000';
+    // const URL = process.env.REACT_APP_API_URL || local;
+    //const URL = local;
+    //const [socket, setSocket] = useState(io(URL));
+//    const socket = useMemo(() => io('/api'), []); 
 const socket = useMemo( () => io('http://35.183.100.104'),[]);
 
 const shortenDay = (day) => {
@@ -52,21 +46,6 @@ const shortenDay = (day) => {
     useEffect(() => {
         
  setToday(moment().format('MMMM Do, YYYY'));
-=======
-=======
->>>>>>> 9cb1631 (version 1.0)
-    // const local = 'http://localhost:5000';
-    // const URL = process.env.REACT_APP_API_URL || local;
-    //const URL = local;
-    //const [socket, setSocket] = useState(io(URL));
-//    const socket = useMemo(() => io('/api'), []); 
-const socket = useMemo( () => io('http://35.183.100.104'),[]);
-
-    useEffect(() => {
-<<<<<<< HEAD
->>>>>>> 9cb1631 (version 1.0)
-=======
->>>>>>> 9cb1631 (version 1.0)
     // if (!socket) {
     //     setSocket(io(URL));
     // }
@@ -77,51 +56,18 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             },
         });
         const data = await response.json();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-         // Calculate the date n days ago
-         const n = 3;
-         const nDaysAgo = moment().subtract(n, 'days');
-
-    // Filter the data to only include checksheets where isChecked is true and actualTime is within the last 3 days
-        const filteredData = data.filter(sheet =>
-        sheet.isChecked &&
-         moment(sheet.actualTime).isAfter(nDaysAgo));
-=======
 
         // Filter the data to only include checksheets where isChecked is true
         const filteredData = data.filter(sheet => sheet.isChecked);
->>>>>>> 9cb1631 (version 1.0)
-=======
-
-        // Filter the data to only include checksheets where isChecked is true
-        const filteredData = data.filter(sheet => sheet.isChecked);
->>>>>>> 9cb1631 (version 1.0)
 
         // Map the filtered data to a new format
         const mappedData = filteredData.map(sheet => ({
             id: sheet._id,
-<<<<<<< HEAD
-<<<<<<< HEAD
             day: shortenDay(sheet.day), 
             lab: sheet.lab,
             startTime: moment(sheet.startTime, 'HH:mm:ss').format('HH:mm'),
             checkedBy: sheet.checkedBy,
-            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('YYYY/MM/DD HH:mm') : ""
-           // formattedTime: sheet.actualTime ? moment(sheet.actualTime).format('MMM D, HH:mm') : ""
-=======
-=======
->>>>>>> 9cb1631 (version 1.0)
-            day: sheet.day,
-            lab: sheet.lab,
-            startTime: moment(sheet.startTime, 'HH:mm:ss').format('hh:mm A'),
-            checkedBy: sheet.checkedBy,
-            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('hh:mm A') : ""
-<<<<<<< HEAD
->>>>>>> 9cb1631 (version 1.0)
-=======
->>>>>>> 9cb1631 (version 1.0)
+            actualTime: sheet.actualTime ? moment(sheet.actualTime).format('MMM D   HH:mm') : ""
         }));
 
         setData(mappedData);
@@ -146,22 +92,12 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             {
                 accessorKey: 'lab',
                 header: 'Lab',
-<<<<<<< HEAD
-<<<<<<< HEAD
                 size: 0.2,
-=======
-                size: 30,
->>>>>>> 9cb1631 (version 1.0)
-=======
-                size: 30,
->>>>>>> 9cb1631 (version 1.0)
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
-<<<<<<< HEAD
-<<<<<<< HEAD
                 size:0.3,
             },
             {
@@ -181,80 +117,33 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
                 filtervariant: 'select',
             },
         ] : [
-              {
-                accessorKey: 'actualTime',
-                header: 'Checked Time',
-                size: 20,
-            },
             {
                 accessorKey: 'lab',
                 header: 'Lab',
                 size: 10,
-=======
-=======
->>>>>>> 9cb1631 (version 1.0)
-                size: 50,
-            },
-        ] : [
-            {
-                accessorKey: 'lab',
-                header: 'Lab',
-                size: 30,
-<<<<<<< HEAD
->>>>>>> 9cb1631 (version 1.0)
-=======
->>>>>>> 9cb1631 (version 1.0)
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'startTime',
                 header: 'Check Time',
-<<<<<<< HEAD
-<<<<<<< HEAD
-                size: 10,
-=======
-                size: 50,
->>>>>>> 9cb1631 (version 1.0)
-=======
-                size: 50,
->>>>>>> 9cb1631 (version 1.0)
+                size: 20,
             },
             {
                 accessorKey: 'day',
                 header: 'Day',
-<<<<<<< HEAD
-<<<<<<< HEAD
                 size: 10,
-=======
-                size: 20,
->>>>>>> 9cb1631 (version 1.0)
-=======
-                size: 20,
->>>>>>> 9cb1631 (version 1.0)
                 filtervariant: 'select',
             },
             {
                 accessorKey: 'checkedBy',
                 header: 'Checked By',
-<<<<<<< HEAD
-<<<<<<< HEAD
-                size:15,
-            },
-          
-=======
-=======
->>>>>>> 9cb1631 (version 1.0)
-                size: 30,
+                size:20,
             },
             {
                 accessorKey: 'actualTime',
-                header: 'Actual Time',
+                header: 'Checked Time',
                 size: 30,
             },
-<<<<<<< HEAD
->>>>>>> 9cb1631 (version 1.0)
-=======
->>>>>>> 9cb1631 (version 1.0)
 
         ],
         [isSmallScreen]
@@ -268,27 +157,13 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
         enablePagination: false,
         initialState: {
             columnOrder: [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 'actualTime',
-=======
->>>>>>> 9cb1631 (version 1.0)
-=======
->>>>>>> 9cb1631 (version 1.0)
                 'day',
                 'lab',
                 'startTime',
                 'checkedBy',
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
             showColumnFilters: false, //
-=======
-            showColumnFilters: true,
->>>>>>> 9cb1631 (version 1.0)
-=======
-            showColumnFilters: true,
->>>>>>> 9cb1631 (version 1.0)
             showColumnVisibilityManager: false,
             showDensitySelector: false,
             showGroupingControls: false,
@@ -298,15 +173,9 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
             showSummary: false,
             showTableSelector: false,
             showViewChanger: false,
-<<<<<<< HEAD
-<<<<<<< HEAD
             sorting: [
                 { id: 'actualTime', desc: true } 
             ],
-=======
->>>>>>> 9cb1631 (version 1.0)
-=======
->>>>>>> 9cb1631 (version 1.0)
         },
         muiTopToolbarProps: {
             sx: {
@@ -344,38 +213,14 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
         },
 
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
     
-    //   useEffect(() => {
+       useEffect(() => {
 
-    //     table.setSorting([{ id: 'actualTime', desc: true }]);
-    // }, [table]);
-
-    return (
-        <>
-            
-            <Typography 
-                align="left"
-                 sx={{
-                        paddingTop: '1px',
-                        paddingRight: '4px', 
-                        fontSize: '0.7rem',
-                        fontStyle: 'italic'
-                    }}>
-                This history record is kept for 3 days and then removed.
-                </Typography>
-            
-=======
+        table.setSorting([{ id: 'actualTime', desc: true }]);
+    }, [table]);
 
     return (
         <>
->>>>>>> 9cb1631 (version 1.0)
-=======
-
-    return (
-        <>
->>>>>>> 9cb1631 (version 1.0)
             <Box
                 justifyContent={'center'}
                 alignItems={'center'}
@@ -386,8 +231,6 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
                 maxWidth={'96%'}
                 overflow={'auto'}
                 padding={'0px'}
-<<<<<<< HEAD
-<<<<<<< HEAD
             
             >
                     
@@ -406,14 +249,6 @@ const socket = useMemo( () => io('http://35.183.100.104'),[]);
                
                 <MaterialReactTable table={table} />
                
-=======
-            >
-                <MaterialReactTable table={table} />
->>>>>>> 9cb1631 (version 1.0)
-=======
-            >
-                <MaterialReactTable table={table} />
->>>>>>> 9cb1631 (version 1.0)
             </Box>
         </>
     );
